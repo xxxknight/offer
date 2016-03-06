@@ -15,6 +15,48 @@ import java.util.ArrayList;
 
 public class Solution20 {
 	public ArrayList<Integer> printMatrix(int[][] matrix) {
+		ArrayList<Integer> res = new ArrayList<Integer>();
+		int rlen = matrix.length;
+		if (rlen == 0) {
+			return res;
+		}
+		int clen = matrix[0].length;
+
+		int x = 0;
+		int y = 0;
+		while (rlen > 0 && clen > 0) {
+			if (rlen == 1 && clen == 1) {
+				res.add(matrix[x][y]);
+				break;
+			} else if (rlen > 1 && clen == 1) {
+				for (int i = 0; i < rlen; i++) {
+					res.add(matrix[x + i][y]);
+				}
+				break;
+			} else if (rlen == 1 && clen > 1) {
+				for (int i = 0; i < clen; i++) {
+					res.add(matrix[x][y + i]);
+				}
+				break;
+			}
+			for (int i = 0; i < clen - 1; i++) {
+				res.add(matrix[x][y + i]);
+			}
+			for (int i = 0; i < rlen - 1; i++) {
+				res.add(matrix[x + i][y + clen - 1]);
+			}
+			for (int i = 0; i < clen - 1; i++) {
+				res.add(matrix[x + rlen - 1][y + clen - 1 - i]);
+			}
+			for (int i = 0; i < rlen - 1; i++) {
+				res.add(matrix[x + rlen - 1 - i][y]);
+			}
+			x++;
+			y++;
+			rlen -= 2;
+			clen -= 2;
+		}
+		return res;
 
 	}
 
