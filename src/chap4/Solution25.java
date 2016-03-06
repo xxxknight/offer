@@ -15,8 +15,31 @@ import chap2.TreeNode;
 
 public class Solution25 {
 	public ArrayList<ArrayList<Integer>> FindPath(TreeNode root, int target) {
-		
+		ArrayList<ArrayList<Integer>> res = new ArrayList<ArrayList<Integer>>();
+		if (root == null) {
+			return res;
+		}
+		help(res, root, target, new ArrayList<Integer>(), 0);
+		return res;
+	}
 
+	private void help(ArrayList<ArrayList<Integer>> res, TreeNode root,
+			int sum, ArrayList<Integer> cur, int curSum) {
+		if (root == null) {
+			return;
+		}
+		curSum += root.val;
+		cur.add(root.val);
+		if (root.left == null && root.right == null && curSum == sum) {
+			res.add(new ArrayList<Integer>(cur));
+		}
+		if (root.left != null) {
+			help(res, root.left, sum, cur, curSum);
+		}
+		if (root.right != null) {
+			help(res, root.right, sum, cur, curSum);
+		}
+		cur.remove(cur.size() - 1);
 	}
 
 }
