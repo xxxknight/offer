@@ -36,8 +36,47 @@ public class Solution32 {
 		return res;
 	}
 
+	public int NumberOf1Between1AndN_Solution2(int n) {
+		if (n <= 0) {
+			return 0;
+		}
+		return helper(n + "");
+	}
+
+	private int helper(String str) {
+		if (null == str || "".equals(str) || str.charAt(0) < '0'
+				|| str.charAt(0) > '9') {
+			return 0;
+		}
+
+		int first = str.charAt(0) - '0';
+
+		int len = str.length();
+
+		if (len == 1 && first == 0) {
+			return 0;
+		}
+
+		if (len == 1 && first > 0) {
+			return 1;
+		}
+
+		int numFirstDigit = 0;
+		if (first > 1) {
+			numFirstDigit = (int) Math.pow(10, len - 1);
+		} else if (first == 1) {
+			numFirstDigit = Integer.parseInt(str.substring(1)) + 1;
+		}
+
+		int numOtherDigits = (int) (first * (len - 1) * Math.pow(10, len - 2));
+		int numRecursive = helper(str.substring(1));
+
+		return numFirstDigit + numOtherDigits + numRecursive;
+	}
+
 	public static void main(String[] args) {
-		System.out.println(new Solution32().NumberOf1Between1AndN_Solution(521));
+		System.out
+				.println(new Solution32().NumberOf1Between1AndN_Solution(521));
 	}
 
 }
