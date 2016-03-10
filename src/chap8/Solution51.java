@@ -12,7 +12,7 @@ package chap8;
  * 
  */
 
-public class Solution51 {
+public class Solution51 {   
 	// Parameters:
 	// numbers: an array of integers
 	// length: the length of array numbers
