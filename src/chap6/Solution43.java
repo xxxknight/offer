@@ -18,6 +18,8 @@ public class Solution43 {
 		if (number < 1) {
 			return;
 		}
+		
+		//用两个数组来存储点数的每一个总数出现的次数。
 		int[][] pro = new int[2][6 * number + 1];
 		int flag = 0;
 		for (int i = 1; i <= 6; i++) {

@@ -1,7 +1,5 @@
 package chap7;
 
-import com.sun.org.apache.bcel.internal.generic.NEW;
-
 /**
  * 把字符串转换成整数
  * 
