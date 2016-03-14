@@ -3,7 +3,6 @@ package chap8;
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.LinkedList;
-import java.util.Queue;
 
 /**
  * 滑动窗口的最大值
@@ -26,22 +25,29 @@ public class Solution65 {
 			Deque<Integer> index = new LinkedList<>();
 
 			for (int i = 0; i < size; i++) {
-				while (!index.isEmpty() && num[i] >= num[index.peekLast()]) {
-					index.poll();
+				 // 如果索引对应的值比之前存储的索引值对应的值大或者相等，就删除之前存储的值
+				while (!index.isEmpty() && num[i] >= num[index.getLast()]) {
+					index.removeLast();
 				}
-				index.push(i);
+				index.addLast(i);
 			}
 
 			for (int i = size; i < num.length; i++) {
 				res.add(num[index.getFirst()]);
-				while (!index.isEmpty() && num[i] >= num[index.peekLast()]) {
-					index.poll();
+				while (!index.isEmpty() && num[i] >= num[index.getLast()]) {
+					index.removeLast();
 				}
+				
+				// 删除已经滑出窗口的数据对应的下标
 				if (!index.isEmpty() && index.getFirst() <= (i - size)) {
-					index.pollFirst();
+					index.removeFirst();
 				}
-				index.push(i);
+				
+				// 可能的最大的下标索引入队
+				index.addLast(i);
 			}
+			
+			// 最后一个窗口最大值入队
 			res.add(num[index.getFirst()]);
 		}
 		return res;
