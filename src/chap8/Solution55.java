@@ -1,6 +1,5 @@
 package chap8;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -16,36 +15,47 @@ import java.util.HashMap;
  */
 
 public class Solution55 {
-	private ArrayList<Character> list = new ArrayList<Character>();
-
 	// Insert one char from stringstream
+	private HashMap<Character, Integer> hs = new HashMap<>();
+	private static int index = 0;
+
 	public void Insert(char ch) {
-		list.add(ch);
+		if (hs.containsKey(ch)) {
+			hs.put(ch, -2);
+		} else {
+			hs.put(ch, ++index);
+		}
+
 	}
 
 	// return the first appearence once char in current stringstream
 	public char FirstAppearingOnce() {
-		int len = list.size();
-		if (len == 0) {
-			return '#';
-		} else if (len == 1) {
-			return list.get(0);
-		} else {
-			HashMap<Character, Integer> map = new HashMap<Character, Integer>();
-			for (int i = 0; i < list.size(); i++) {
-				if (map.containsKey(list.get(i))) {
-					map.put(list.get(i), map.get(list.get(i)) + 1);
-				} else {
-					map.put(list.get(i), 1);
-				}
-			}
-
-			for (int i = 0; i < list.size(); i++) {
-				if (map.get(list.get(i)) == 1) {
-					return list.get(i);
-				}
+		int minIndex = Integer.MAX_VALUE;
+		char ch = '#';
+		for (int i = 0; i < 256; i++) {
+			char c = (char) ('#' + i - 35);
+			if (hs.containsKey(c) && hs.get(c) > 0 && hs.get(c) < minIndex) {
+				minIndex = hs.get(c);
+				ch = c;
 			}
 		}
-		return '#';
+		return ch;
+	}
+
+	public static void main(String[] args) {
+		Solution55 solution55 = new Solution55();
+		solution55.Insert('g');
+		System.out.println(solution55.FirstAppearingOnce());
+		solution55.Insert('o');
+		System.out.println(solution55.FirstAppearingOnce());
+		solution55.Insert('o');
+		System.out.println(solution55.FirstAppearingOnce());
+		solution55.Insert('g');
+		System.out.println(solution55.FirstAppearingOnce());
+		solution55.Insert('l');
+		System.out.println(solution55.FirstAppearingOnce());
+		solution55.Insert('e');
+		System.out.println(solution55.FirstAppearingOnce());
+
 	}
 }
