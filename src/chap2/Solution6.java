@@ -1,7 +1,7 @@
 package chap2;
 
 /**
- * 重建二叉树 
+ * 重建二叉树
  * 
  * 题目描述
  * 
@@ -9,7 +9,6 @@ package chap2;
  * 5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树并返回。
  * 
  */
-
 
 public class Solution6 {
 	public TreeNode reConstructBinaryTree(int[] pre, int[] in) {

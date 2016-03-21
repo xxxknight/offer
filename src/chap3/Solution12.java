@@ -1,6 +1,7 @@
 package chap3;
 
 import java.util.Arrays;
+
 /**
  * 打印1到最大的n位数
  * 

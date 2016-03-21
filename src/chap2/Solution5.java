@@ -28,26 +28,26 @@ public class Solution5 {
 			return res;
 		}
 	}
-	
-	//利用递归
+
+	// 利用递归
 	public ArrayList<Integer> printListFromTailToHead2(ListNode listNode) {
-        ArrayList<Integer> res = new ArrayList<Integer>();
-        if(listNode == null){
-            return res;
-        }else{
-            helper(listNode , res);
-            return res;
-        }
-        
-    }
-    
-    private void helper(ListNode node, ArrayList<Integer> list){
-        if(node == null){
-            return;
-        }
-        helper(node.next, list);
-        list.add(node.val);
-        
-    }
+		ArrayList<Integer> res = new ArrayList<Integer>();
+		if (listNode == null) {
+			return res;
+		} else {
+			helper(listNode, res);
+			return res;
+		}
+
+	}
+
+	private void helper(ListNode node, ArrayList<Integer> list) {
+		if (node == null) {
+			return;
+		}
+		helper(node.next, list);
+		list.add(node.val);
+
+	}
 
 }

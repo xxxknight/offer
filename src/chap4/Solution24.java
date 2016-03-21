@@ -49,33 +49,30 @@ public class Solution24 {
 		return helper2(sequence, 0, sequence.length - 1);
 	}
 
-	private boolean helper2(int[] array, int first, int last) {
-		if (array == null || last - first < 1) {
+	public boolean helper2(int[] arr, int first, int end) {
+		if (arr == null || end - first < 1) {
 			return true;
 		}
-		int root = array[first];
+		int root = arr[first];
 		int index = first + 1;
-		while (index < last) {
-			if (array[index] > root) {
-				break;
+		while (index <= end && arr[index] < root) {
+			index++;
+		}
+		int tmp = index;
+		while (index <= end) {
+			if (arr[index] < root) {
+				return false;
 			}
 			index++;
 		}
-		int j = index;
-		while (j < last) {
-			if (array[j] < root) {
-				return false;
-			}
-			j++;
-		}
-		boolean left = helper(array, first + 1, index - 1);
-		boolean right = helper(array, index, last);
+		boolean left = helper(arr, first + 1, tmp - 1);
+		boolean right = helper(arr, tmp, end);
 		return left && right;
 	}
 
 	public static void main(String[] args) {
 		int[] num1 = { 5, 7, 6, 9, 11, 10, 8 };
-		int[] num2 = { 8, 6, 5, 7, 10, 9, 11 };
+		int[] num2 = { 4, 2, 3, 1 };
 		Solution24 test = new Solution24();
 
 		System.out.println(test.VerifySquenceOfBST(num1));

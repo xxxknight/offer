@@ -20,7 +20,7 @@ public class Solution4 {
 					cnt0++;
 				}
 			}
-			//算出长度以减少数组的复制
+			// 算出长度以减少数组的复制
 			StringBuffer sb = new StringBuffer(cnt0);
 			for (int i = str.length() - 1; i >= 0; i--) {
 				char c = str.charAt(i);
